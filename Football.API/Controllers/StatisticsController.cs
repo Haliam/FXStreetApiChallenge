@@ -3,7 +3,7 @@ using System;
 
 namespace Football.API.Controllers
 {
-    [Route("/api/[controller]")]
+    [Route("/api/statistics")]
     [ApiController]
     public class StatisticsController : ControllerBase
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Football.API.Controllers
 {
-    [Route("/api/[controller]")]
+    [Route("/api/match")]
     [ApiController]
     public class MatchController : ControllerBase
     {
@@ -15,14 +15,12 @@ namespace Football.API.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         public ActionResult<IEnumerable<Match>> Get()
         {
             return this.Ok(footballContext.Matches);
         }
         
-        [HttpGet]
-        [Route("{id}", Name = "GetById")]
+        [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
             var response = footballContext.Matches.Find(id);
@@ -38,8 +36,7 @@ namespace Football.API.Controllers
             return this.CreatedAtAction("GetById", response.Id, response);
         }
 
-        [HttpPut]
-        [Route("{id}")]
+        [HttpPut("{id}")]
         public ActionResult Update(int id, Match match)
         {
             if (footballContext.Matches.Find(id) == default)
