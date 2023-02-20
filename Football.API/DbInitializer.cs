@@ -1,4 +1,4 @@
-﻿using Football.API.Models;
+﻿using Football.Domain.Models;
 using System.Linq;
 
 namespace Football.API

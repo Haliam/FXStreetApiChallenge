@@ -1,9 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.API", "Football.API\Football.API.csproj", "{E7F4098C-4C5C-4759-A104-60D0AE24ED30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Football.API", "Football.API\Football.API.csproj", "{E7F4098C-4C5C-4759-A104-60D0AE24ED30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{F2D18A3D-65A9-4BBB-80BF-07D5B8493328}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{58D32DDF-0E69-4B66-9982-4A6D6D8F1C8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DFBC0857-3C2C-4D7F-9FBE-0EF9FD80EF90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{E53A46C2-51F2-4EE6-B327-50415F5BD4ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.Domain", "src\Domain\Football.Domain\Football.Domain.csproj", "{240AB301-3E95-4E8A-B447-8543B270ADE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{27B22A77-BB58-4942-99DF-2AB759CC0EA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,19 @@ Global
 		{E7F4098C-4C5C-4759-A104-60D0AE24ED30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F4098C-4C5C-4759-A104-60D0AE24ED30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F4098C-4C5C-4759-A104-60D0AE24ED30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{240AB301-3E95-4E8A-B447-8543B270ADE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{240AB301-3E95-4E8A-B447-8543B270ADE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{240AB301-3E95-4E8A-B447-8543B270ADE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{240AB301-3E95-4E8A-B447-8543B270ADE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7F4098C-4C5C-4759-A104-60D0AE24ED30} = {27B22A77-BB58-4942-99DF-2AB759CC0EA0}
+		{E53A46C2-51F2-4EE6-B327-50415F5BD4ED} = {58D32DDF-0E69-4B66-9982-4A6D6D8F1C8E}
+		{240AB301-3E95-4E8A-B447-8543B270ADE5} = {E53A46C2-51F2-4EE6-B327-50415F5BD4ED}
+		{27B22A77-BB58-4942-99DF-2AB759CC0EA0} = {58D32DDF-0E69-4B66-9982-4A6D6D8F1C8E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FFDAD86-091F-4B5B-8EF7-379D153CDBBA}

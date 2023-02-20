@@ -1,4 +1,4 @@
-﻿using Football.API.Models;
+﻿using Football.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
