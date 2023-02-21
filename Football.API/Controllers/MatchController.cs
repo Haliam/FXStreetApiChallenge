@@ -8,42 +8,66 @@ namespace Football.API.Controllers
     [ApiController]
     public class MatchController : ControllerBase
     {
-        private readonly FootballContext footballContext;
+        public FootballContext FootballContext { get; set; }
+
         public MatchController(FootballContext footballContext)
         {
-            this.footballContext = footballContext;
+            FootballContext = footballContext;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Match>> Get()
         {
-            return this.Ok(footballContext.Matches);
+            return Ok(FootballContext.Matches);
         }
         
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
-            var response = footballContext.Matches.Find(id);
-            if (response == default)
-                this.NotFound();
-            return this.Ok();
+            var response = FootballContext.Matches.Find(id);
+
+            if (response == null)
+                NotFound();
+
+            return Ok();
         }
 
         [HttpPost]
         public ActionResult Post(Match match)
         {
-            var response = footballContext.Matches.Add(match).Entity;
-            return this.CreatedAtAction("GetById", response.Id, response);
+            var response = FootballContext.Matches.Add(match).Entity;
+
+            if (response == null)
+                NotFound();
+
+            return CreatedAtAction("GetById", response.Id, response);
         }
 
         [HttpPut("{id}")]
         public ActionResult Update(int id, Match match)
         {
-            if (footballContext.Matches.Find(id) == default)
-                return this.NotFound();
+            if (FootballContext.Matches.Find(id) == null)
+                return NotFound();
 
-            footballContext.Matches.Update(match);
-            return this.Ok();
+            FootballContext.Matches.Update(match);
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteById(int id)
+        {
+            if (FootballContext.Matches.Find(id) == null)
+                return NotFound();
+
+            Match match = FootballContext.Matches.Find(id);
+
+            if (match == null)
+                return NotFound();
+
+            FootballContext.Matches.Remove(match);
+
+            return Ok();
         }
     }
 }

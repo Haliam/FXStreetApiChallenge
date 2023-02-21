@@ -8,42 +8,66 @@ namespace Football.API.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        readonly FootballContext footballContext;
+        public FootballContext FootballContext { get; set; }
+
         public PlayerController(FootballContext footballContext)
         {
-            this.footballContext = footballContext;
+            FootballContext = footballContext;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Player>> Get()
         {
-            return this.Ok(footballContext.Players);
+            return Ok(FootballContext.Players);
         }
 
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
-            var response = footballContext.Players.Find(id);
-            if (response == default)
-                this.NotFound();
-            return this.Ok();
+            var response = FootballContext.Players.Find(id);
+
+            if (response == null)
+                NotFound();
+
+            return Ok();
         }
 
         [HttpPost]
         public ActionResult Post(Player player)
         {
-            var response = footballContext.Players.Add(player).Entity;
-            return this.CreatedAtAction("GetById", response.Id, response);
+            var response = FootballContext.Players.Add(player).Entity;
+
+            if (response == null)
+                NotFound();
+
+            return CreatedAtAction("GetById", response.Id, response);
         }
 
         [HttpPut("{id}")]
         public ActionResult Update(int id, Player player)
         {
-            if (footballContext.Players.Find(id) == default)
-                return this.NotFound();
+            if (FootballContext.Players.Find(id) == null)
+                return NotFound();
 
-            footballContext.Players.Update(player);        
-            return this.Ok();
+            FootballContext.Players.Update(player); 
+            
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteById(int id)
+        {
+            if (FootballContext.Players.Find(id) == null)
+                return NotFound();
+
+            Player player = FootballContext.Players.Find(id);
+
+            if (player == null)
+                return NotFound();
+
+            FootballContext.Players.Remove(player);
+
+            return Ok();
         }
     }
 }

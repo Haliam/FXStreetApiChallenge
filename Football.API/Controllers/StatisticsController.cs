@@ -7,10 +7,11 @@ namespace Football.API.Controllers
     [ApiController]
     public class StatisticsController : ControllerBase
     {
-        readonly FootballContext footballContext;
+        public FootballContext FootballContext { get; set; }
+
         public StatisticsController(FootballContext footballContext)
         {
-            this.footballContext = footballContext;
+            FootballContext = footballContext;
         }
 
         [HttpGet]
