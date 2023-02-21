@@ -1,3 +1,4 @@
+using Football.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,24 +29,8 @@ namespace Football.API
 
             services.AddMvc();
             services.AddSwaggerGen(s =>
-            {
-                s.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Football API",
-                    Contact = new OpenApiContact
-                    {
-                        Email = "devhaliam@gmail.com",
-                        Name = "Haliam Pérez",
-                        Url = new Uri("https://github.com/Haliam")
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Football License",
-                        Url = new Uri("https://opensource.org/licenses/mit"),
-
-                    },
-                    Version = "v1",
-                });;
+            {            
+                s.SwaggerDoc("v1", FootballApiDoc.GetInfo());
             });
         }
 
