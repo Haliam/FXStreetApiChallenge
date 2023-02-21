@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace Football.API
 {
@@ -26,7 +27,26 @@ namespace Football.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Football API",
+                    Contact = new OpenApiContact
+                    {
+                        Email = "devhaliam@gmail.com",
+                        Name = "Haliam Pérez",
+                        Url = new Uri("https://github.com/Haliam")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Football License",
+                        Url = new Uri("https://opensource.org/licenses/mit"),
+
+                    },
+                    Version = "v1",
+                });;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +56,11 @@ namespace Football.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(s =>
+                {
+                    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Football v1");
+                    s.DisplayOperationId();
+                });
             }
 
             app.UseRouting();
