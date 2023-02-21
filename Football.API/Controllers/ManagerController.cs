@@ -1,5 +1,6 @@
 ﻿using Football.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Football.API.Controllers
@@ -8,42 +9,67 @@ namespace Football.API.Controllers
     [ApiController]
     public class ManagerController : ControllerBase
     {
-        readonly FootballContext footballContext;
+        public FootballContext FootballContext { get; set; }
+
         public ManagerController(FootballContext footballContext)
         {
-            this.footballContext = footballContext;
+            FootballContext = footballContext;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Manager>> Get()
         {
-            return this.Ok(footballContext.Managers);
+            return Ok(FootballContext.Managers);
         }
 
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
-            var response = footballContext.Managers.Find(id);
-            if (response == default)
-                this.NotFound();
-            return this.Ok();
+            var response = FootballContext.Managers.Find(id);
+
+            if (response == null)
+                NotFound();
+
+            return Ok();
         }
 
         [HttpPost]
         public ActionResult Post(Manager manager)
         {
-            var response = footballContext.Managers.Add(manager).Entity;
-            return this.CreatedAtAction("GetById", response.Id, response);
+            var response = FootballContext.Managers.Add(manager).Entity;
+
+            if (response == null)
+                NotFound();
+
+            return CreatedAtAction("GetById", response.Id, response);
         }
 
         [HttpPut("{id}")]
         public ActionResult Update(int id, Manager manager)
         {
-            if (footballContext.Managers.Find(id) == default)
-                return this.NotFound();
+            if (FootballContext.Managers.Find(id) == null)
+                return NotFound();
 
-            footballContext.Managers.Update(manager);           
-            return this.Ok();
+            FootballContext.Managers.Update(manager);     
+            
+            return Ok();
+        }
+
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteById(int id)
+        {
+            if (FootballContext.Managers.Find(id) == null)
+                return NotFound();
+
+            Manager manager = FootballContext.Managers.Find(id); 
+
+            if (manager == null)
+                return NotFound();
+
+            FootballContext.Managers.Remove(manager);
+
+            return Ok();
         }
     }
 }
