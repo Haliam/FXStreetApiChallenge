@@ -1,4 +1,5 @@
 using Football.API.Models;
+using Football.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

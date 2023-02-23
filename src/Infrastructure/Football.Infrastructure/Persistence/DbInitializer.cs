@@ -1,7 +1,7 @@
 ﻿using Football.Domain.Models;
 using System.Linq;
 
-namespace Football.API
+namespace Football.Infrastructure.Persistence
 {
     public static class DbInitializer
     {

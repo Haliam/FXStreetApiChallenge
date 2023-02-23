@@ -1,12 +1,12 @@
 ﻿using Football.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Football.API
+namespace Football.Infrastructure.Persistence
 {
     public class FootballContext : DbContext
     {
         public FootballContext(DbContextOptions<FootballContext> options)
-            : base(options)
+          : base(options)
         {
         }
 

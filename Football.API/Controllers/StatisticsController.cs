@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Football.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace Football.API.Controllers
