@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="CQRS\Commands\" />
+    <Folder Include="CQRS\Handlers\" />
+    <Folder Include="CQRS\Queries\" />
+    <Folder Include="Services\CommandServices\" />
+    <Folder Include="Services\QueryServices\" />
+  </ItemGroup>
+
+</Project>
