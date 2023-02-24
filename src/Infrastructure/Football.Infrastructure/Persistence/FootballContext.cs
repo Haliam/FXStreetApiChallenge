@@ -5,8 +5,8 @@ namespace Football.Infrastructure.Persistence
 {
     public class FootballContext : DbContext
     {
-        public FootballContext(DbContextOptions<FootballContext> options)
-          : base(options)
+        public FootballContext(DbContextOptions<FootballContext> options) 
+            : base(options)
         {
         }
 
