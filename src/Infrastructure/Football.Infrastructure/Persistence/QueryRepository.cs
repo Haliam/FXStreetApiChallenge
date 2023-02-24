@@ -9,12 +9,20 @@ namespace Football.Infrastructure.Persistence
 {
     public class QueryRepository<T> : IQueryRepository<T> where T : class
     {
-        private DbSet<T> dbSet;
+        private FootballContext _context;
 
-        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate) => await dbSet.Where(predicate).ToListAsync();
+        private DbSet<T> _dbSet;
 
-        public async Task<IEnumerable<T>> GetAll() => await dbSet.ToListAsync();
+        public QueryRepository(FootballContext context) 
+        {
+            _context = context;
+            _dbSet = _context.Set<T>();
+        }
 
-        public async Task<T> GetById(int id) => await dbSet.FindAsync(id);
+        public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate) => await _dbSet.Where(predicate).ToListAsync();
+
+        public async Task<IEnumerable<T>> GetAll() => await _dbSet.ToListAsync();
+
+        public async Task<T> GetById(int id) => await _dbSet.FindAsync(id);
     }
 }

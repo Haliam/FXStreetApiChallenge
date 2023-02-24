@@ -8,42 +8,49 @@ namespace Football.Infrastructure.Persistence
 {
     public class CommandRepository<T> : ICommandRepository<T> where T : class
     {
-        private FootballContext context;
-        private DbSet<T> dbSet;
+        private FootballContext _context;
+
+        private DbSet<T> _dbSet;
+
+        public CommandRepository(FootballContext context)
+        {
+            _context = context;
+            _dbSet = _context.Set<T>();
+        }
 
         public async Task Insert(T entity)
         {
-            await dbSet.AddAsync(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public async Task InsertRange(IEnumerable<T> entities)
         {
-            await dbSet.AddRangeAsync(entities);
+            await _dbSet.AddRangeAsync(entities);
         }
 
         public async Task Update(T entity)
         {
-            context.Entry(entity).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(T entity)
         {
-            context.Set<T>().Remove(entity);
-            await context.SaveChangesAsync();
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(object id)
         {
-            var entity = dbSet.FindAsync(id);
+            var entity = _dbSet.FindAsync(id);
 
             await Delete(entity.Result);
         }
 
         public async Task DeleteRange(IEnumerable<T> entities)
-        {     
-            context.Set<T>().RemoveRange(entities);
-            await context.SaveChangesAsync();
+        {
+            _context.Set<T>().RemoveRange(entities);
+            await _context.SaveChangesAsync();
         }
     }
 }
