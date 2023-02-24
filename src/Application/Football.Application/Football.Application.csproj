@@ -8,8 +8,11 @@
     <Folder Include="CQRS\Commands\" />
     <Folder Include="CQRS\Handlers\" />
     <Folder Include="CQRS\Queries\" />
-    <Folder Include="Services\CommandServices\" />
-    <Folder Include="Services\QueryServices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Football.Domain\Football.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Football.Infrastructure\Football.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
