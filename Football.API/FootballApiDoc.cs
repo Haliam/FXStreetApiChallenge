@@ -1,8 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using System;
-using System.ComponentModel;
 
-namespace Football.API.Models
+namespace Football.API
 {
     public static class FootballApiDoc
     {
