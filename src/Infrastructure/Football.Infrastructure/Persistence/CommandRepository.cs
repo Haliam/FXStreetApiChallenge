@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -7,34 +8,42 @@ namespace Football.Infrastructure.Persistence
 {
     public class CommandRepository<T> : ICommandRepository<T> where T : class
     {
+        private FootballContext context;
+        private DbSet<T> dbSet;
+
         public async Task Insert(T entity)
         {
-            throw new NotImplementedException();
+            await dbSet.AddAsync(entity);
         }
 
         public async Task InsertRange(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            await dbSet.AddRangeAsync(entities);
         }
 
         public async Task Update(T entity)
         {
-            throw new NotImplementedException();
+            context.Entry(entity).State = EntityState.Modified;
+            await context.SaveChangesAsync();
         }
 
         public async Task Delete(T entity)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Remove(entity);
+            await context.SaveChangesAsync();
         }
 
         public async Task Delete(object id)
         {
-            throw new NotImplementedException();
+            var entity = dbSet.FindAsync(id);
+
+            await Delete(entity.Result);
         }
 
         public async Task DeleteRange(IEnumerable<T> entities)
-        {
-            throw new NotImplementedException();
+        {     
+            context.Set<T>().RemoveRange(entities);
+            await context.SaveChangesAsync();
         }
     }
 }
