@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Football.API", "Football.API\Football.API.csproj", "{E7F4098C-4C5C-4759-A104-60D0AE24ED30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Football.Host.Api", "src\Host\Football.Host.API\Football.Host.Api.csproj", "{E7F4098C-4C5C-4759-A104-60D0AE24ED30}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{F2D18A3D-65A9-4BBB-80BF-07D5B8493328}"
 EndProject

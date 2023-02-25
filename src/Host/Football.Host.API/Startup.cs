@@ -1,3 +1,4 @@
+using Football.Domain.Models;
 using Football.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

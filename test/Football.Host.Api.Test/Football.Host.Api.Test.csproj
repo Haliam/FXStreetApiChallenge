@@ -21,8 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Football.API\Football.API.csproj" />
-  </ItemGroup>
-
 </Project>

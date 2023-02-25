@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <BaseIntermediateOutputPath></BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Domain\Football.Domain\Football.Domain.csproj" />
-    <ProjectReference Include="..\src\Infrastructure\Football.Infrastructure\Football.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Football.Infrastructure\Football.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
