@@ -1,4 +1,3 @@
-using Football.Domain.Models;
 using Football.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +25,7 @@ namespace Football.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Startup).Assembly));
             services.AddSwaggerGen(s =>
             {            
                 s.SwaggerDoc("v1", FootballApiDoc.GetInfo());
