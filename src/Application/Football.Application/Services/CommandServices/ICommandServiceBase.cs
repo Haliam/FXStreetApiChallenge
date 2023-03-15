@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Football.Infrastructure.Persistence;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Football.Application.Services
 {
     public interface ICommandServiceBase<T>
-    {   
+    {
         Task Insert(T entity);
 
         Task InsertRange(IEnumerable<T> entities);
