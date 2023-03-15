@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Application\Football.Application\Football.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Football.Infrastructure\Football.Infrastructure.csproj" />
   </ItemGroup>
 
